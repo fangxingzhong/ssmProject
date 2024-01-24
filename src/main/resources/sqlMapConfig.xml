@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!-- 配置文件的根元素 -->
+<configuration>
+
+    <!--整合到spring中，此处可以去掉-->
+    <!--<properties resource="jdbc.properties" />-->
+
+    <typeAliases>
+        <!--<typeAlias type="com.fang.bean.Account" alias="account" />-->
+        <!--直接配置包，包下所有的类都有别名，别名为类名或类名首字母小写-->
+        <package name="com.fang.bean" />
+    </typeAliases>
+
+<!--    <typeHandlers>
+        <typeHandler handler="com.fang.handler.DateTypeHandler"  />
+    </typeHandlers>-->
+    <plugins>
+        <plugin interceptor="com.github.pagehelper.PageInterceptor" />
+        <!--<plugin interceptor="com.github.pagehelper.PageHelper">
+            <property name="dialect" value="${dababase.type}"/>
+        </plugin>-->
+    </plugins>
+
+
+    <!--整合到spring中，此处可以去掉-->
+    <!--
+    <environments default="dev">
+        <environment id="dev">
+            <transactionManager type="JDBC"></transactionManager>
+            <dataSource type="POOLED">
+                <property name="driver" value="${jdbc.driver}"/>
+                <property name="url" value="${jdbc.url}"/>
+                <property name="username" value="${jdbc.username}"/>
+                <property name="password" value="${jdbc.password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+    -->
+
+    <!--可以整合到sping中，此处可以去掉-->
+<!--    <mappers>
+        &lt;!&ndash;<mapper resource="com/fang/mapper/AccountMapper.xml" />&ndash;&gt;
+        &lt;!&ndash;直接配置包，包下所有的配置文件都会加载进去&ndash;&gt;
+        <package name="com.fang.mapper" />
+    </mappers>-->
+
+    
+</configuration>

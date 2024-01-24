@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://www.springframework.org/schema/context  http://www.springframework.org/schema/context/spring-context.xsd
+                        http://www.springframework.org/schema/mvc  http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <!--通过组件扫描查找包下的注解配置-->
+    <context:component-scan base-package="com.fang.controller" />
+
+    <!--注解驱动，包含数据返回中集合自动转JSON-->
+    <mvc:annotation-driven />
+
+    <!--内部资源视图解析器，定义前缀和后缀-->
+    <bean id="internalResourceViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver" >
+        <property name="prefix" value="/" />
+        <property name="suffix" value=".jsp"/>
+    </bean>
+    <!--静态资源，不受springmvc过滤-->
+    <!--<mvc:resources mapping="/js/**" location="/js/" />-->
+    <mvc:default-servlet-handler />
+
+    <!--配置文件上传解析器-->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="maxUploadSize" value="10240000" />
+        <property name="maxUploadSizePerFile" value="10240000" />
+        <property name="defaultEncoding" value="UTF-8" />
+    </bean>
+
+
+    <!--配置拦截器-->
+<!--    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <mvc:exclude-mapping path="/lib/**"/>
+            <mvc:exclude-mapping path="/css/**"/>
+            <mvc:exclude-mapping path="/js/**"/>
+            <mvc:exclude-mapping path="/images/**"/>
+            <mvc:exclude-mapping path="/fonts/**"/>
+            <mvc:exclude-mapping path="/**.html"/>
+            <mvc:exclude-mapping path="/user/login"/>
+            <bean class="com.fang.interceptor.LoginInterceptor" />
+        </mvc:interceptor>
+    </mvc:interceptors>-->
+
+</beans>
